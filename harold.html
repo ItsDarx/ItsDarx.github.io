@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#slider" ).slider();
+    } );
+    </script>
+
+	<title> Pagina de Inicio </title>
+</head>
+<body>
+    <!-- SECCION I N I C I O -->
+    <section id="inicio">
+        <div class="contenido">
+            <header>
+                <div class="contenido-header">
+                    <h1>/MP/</h1>
+                    <nav id="nav" class="">
+                        <ul id="links">
+                            <li><a href="index.html" class="seleccionado" onclick="seleccionar(this)">INICIO</a></li>
+                            <li><a href="sobremi.html" onclick="seleccionar(this)"> SOBRE MI</a></li>
+                            <li><a href="pasatiempos.html" onclick="seleccionar(this)"> PASATIEMPOS </a></li>
+                            <li><a href="videos.html" onclick="seleccionar(this)"> VIDEOS </a></li>
+                            <li><a href="contacto.html" onclick="seleccionar(this)"> CONTACTO </a></li>
+                        </ul>
+                    </nav>
+                    <!-- Icono del menu responsive -->
+                    <div id="icono-nav" onclick="responsiveMenu()">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                    <div class="redes">
+                        <a href="www.youtube.com"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="www.instagram.com"><i class="fa-brands fa-instagram-square"></i></a>
+                    </div>
+                </div>
+            </header>
+            <div class="presentacion">
+                <p class="bienvenida">Bienvenidos</p>
+                <h2> Soy Harold Vega  </h2>
+                <p class="descripcion"> Esta es mi pagina web  </p>
+            </div>
+        </div>
+    </section>
+    <!-- SECCION S O B R E  M I -->
+    <section id="sobremi">
+        <div class="contenedor-foto">
+            <img src="img/3.jpg" alt="">
+        </div>
+        <div class="sobremi">
+            <p class="titulo-seccion"> Información </p>
+            <h2><span> Universidad Tecnica de Cotopaxi </span></h2>
+            <h3> Por la vinculación de la Universidad con el Pueblo </h3> 
+            <p align="justify">El mundo Académico es cambiante, evoluciona cada día. Es mucho más competitivo y exigente. En la Universidad Técnica de Cotopaxi nos distinguimos por la calidad de nuestros servicios, el profesionalismo de nuestra gente y la manera en que formamos estudiantes con conocimientos superlativos y competitivos. Hoy, consolidamos un compromiso en la forma de trabajar y de comportarnos; Creamos el valor que tú necesitas.</p>
+            <a href="https://www.utc.edu.ec/" class="seleccionado" onclick="seleccionar(this)">Acerca de Nosotros</a>
+        </div>
+    </section>
+    <!-- SECCION H A B I L I D A D E S -->
+    <div class="contenedor-skills" id="skills">
+        <h3> HABILIDADES USADAS </h3>
+        <div class="skill">
+            <div class="info">
+                <p> <span class="lista"> </span>Html</p>
+                <span class="porcentaje">95%</span>
+            </div>
+
+            <div class="barra">
+                <div class="" id="html"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <div class="info">
+                <p> <span class="lista"> </span>Javascript</p>
+                <span class="porcentaje">90%</span>
+            </div>
+
+            <div class="barra">
+                <div class="" id="js"></div>
+            </div>
+        </div>
+        <div class="skill">
+            <div class="info">
+                <p> <span class="lista"> </span>CSS</p>
+                <span class="porcentaje">90%</span>
+            </div>
+
+            <div class="barra">
+                <div class="" id="bd"></div>
+            </div>
+        </div>
+    </div>
+    <div id="slider"></div>
+        <!-- SECCION FOOTER -->
+    <footer>
+        <p>Todos los derechos reservados - 2023</p>
+        <div class="redes">
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram-square"></i></a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
