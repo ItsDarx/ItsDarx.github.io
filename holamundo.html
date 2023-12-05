@@ -9,15 +9,15 @@
     <h1>HELLO,WORLD...!!!</h1>
     <form action="">
         <label for="">Nombre:</label><br>
-        <input type="text" name="name"><br>
+        <input type="text" name="" id="name"><br>
         <label for="">Edad:</label><br>
-        <input type="number" name="lastname" id=""><br>
+        <input type="number" name="" id="age"><br>
          <button type="button" onclick="crearRegistro()">Enviar</button>
     </form>
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-        // TODO: Add SDKs for Firebase products that you want to use
+        import { getDatabase,ref,push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"; //paquete para el real-timeDatabase;        // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
       
         // Your web app's Firebase configuration
@@ -33,6 +33,12 @@
       
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
+        const database= getDatabase(app);//Establecer conexion con mi base de datos
+        window.crearRegistro=function(){
+            const name=document.getElementById("name").value;
+            const age=document.getElementById("age").value;
+            console.log(name,age);
+        }
       </script>
 </body>
 </html>
