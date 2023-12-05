@@ -38,6 +38,13 @@
             const name=document.getElementById("name").value;
             const age=document.getElementById("age").value;
             console.log(name,age);
+            push(
+                ref(database,'septimo'),
+                {
+                    nombre:name,
+                    edad:age
+                }
+            );
         }
       </script>
 </body>
