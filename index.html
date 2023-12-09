@@ -21,18 +21,8 @@
           <input type="text" name="" id="videojuego">
           <br>
           <br>
-          <label for=""><b>Plataforma: </b></label>
-          <label>
-            <input type="radio" name="opcion" value="PlayStation 4"> PlayStation 4
-          </label>
-      
-          <label>
-            <input type="radio" name="opcion" value="PlayStation 5"> PlayStation 5
-          </label>
-      
-          <label>
-            <input type="radio" name="opcion" value="Xbox Series S/X"> Xbox Series S/X
-          </label>
+          <label for="plataforma"><b>Plataforma: </b></label>
+          <input type="text" name="" id="plataforma">
           <br>
           <label for="cantidad"><b>Cantidad:</b> </label>
           <input type="number" name="" id="cantidad">
@@ -69,7 +59,7 @@
                 const nombre= document.getElementById("nombre").value;
                 const correo= document.getElementById("correo").value;
                 const videojuego= document.getElementById("videojuego").value;
-                const plataforma= document.getElementsByName("opcion").value;
+                const plataforma= document.getElementById("plataforma").value;
                 const cantidad= document.getElementById("cantidad").value;
                  console.log(nombre,correo,videojuego,opcion,cantidad);
                 
@@ -79,7 +69,7 @@
                         name: nombre,
                          mail: email,
                         videogame: videojuego,
-                        platform: opcion,
+                        platform: plataforma,
                         cant: cantidad
                     }
                 );
