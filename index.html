@@ -63,7 +63,7 @@
     <input type="number" name="" id="cantidad">
     <br>
     <br>
-    <button type="button" onclick="Enviar">Enviar</button>
+    <button type="button" onclick="crearRegistro()">Enviar</button>
     </form>
   </center>
   <!--INICIALIZANDO FIREBASE-->
@@ -87,7 +87,7 @@
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
-    window.Enviar = function(){
+    window.crearRegistro= function(){
       const nombre= document.getElementById("nombre").value;
       const correo= document.getElementById("correo").value;
       const videojuego= document.getElementById("videojuego").value;
