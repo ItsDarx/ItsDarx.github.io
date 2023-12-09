@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="contenido">
+        <h3 style="text-align: center;">Formulario Venta de VideoJuegos</h3>
+          <center>
+          <form action="">Porfavor llene el siguiente formulario: 
+          <br>
+          <label for="nombre"><b>Nombre: </b></label>
+          <input type="text" id="nombre">
+          <br>
+          <label for="correo"><b>Correo Electrónico:</b> </label>
+          <input type="email" id="correo">
+          <br>
+          <label for="videojuego"><b>Videojuego:</b> </label>
+          <input type="text" name="" id="videojuego">
+          <br>
+          <br>
+          <label for=""><b>Plataforma: </b></label>
+          <label>
+            <input type="radio" name="opcion" value="PlayStation 4"> PlayStation 4
+          </label>
+      
+          <label>
+            <input type="radio" name="opcion" value="PlayStation 5"> PlayStation 5
+          </label>
+      
+          <label>
+            <input type="radio" name="opcion" value="Xbox Series S/X"> Xbox Series S/X
+          </label>
+          <br>
+          <label for="cantidad"><b>Cantidad:</b> </label>
+          <input type="number" name="" id="cantidad">
+          <br>
+          <br>
+          <button type="button" onclick="Enviar">Enviar</button>
+          </form>
+        </center>
+    
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCFmywA9G6FIT4oOd2KtX9QhNRwKNKa3Y4",
+          authDomain: "pro-septimo.firebaseapp.com",
+          databaseURL: "https://pro-septimo-default-rtdb.firebaseio.com",
+          projectId: "pro-septimo",
+          storageBucket: "pro-septimo.appspot.com",
+          messagingSenderId: "549825480403",
+          appId: "1:549825480403:web:081982af9583715d08b626"
+        };
+      
+         // Initialize Firebase
+         const app = initializeApp(firebaseConfig);
+            const database = getDatabase(app);
+
+            window.crearRegistro = function(){
+                const nombre= document.getElementById("nombre").value;
+                const correo= document.getElementById("correo").value;
+                const videojuego= document.getElementById("videojuego").value;
+                const plataforma= document.getElementsByName("opcion").value;
+                const cantidad= document.getElementById("cantidad").value;
+                 console.log(nombre,correo,videojuego,opcion,cantidad);
+                
+                push(
+                    ref(database, 'Aleex'),
+                    {
+                        name: nombre,
+                         mail: email,
+                        videogame: videojuego,
+                        platform: opcion,
+                        cant: cantidad
+                    }
+                );
+
+            }
+      </script>
+</body>
+</html>
