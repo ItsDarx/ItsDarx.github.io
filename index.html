@@ -112,7 +112,7 @@
             function mostrarDatosEnTabla() {
         const tableBody = document.getElementById("tablaDatos");
 
-        onValue(ref(database, 'Aleex'), (snapshot) => {
+        onValue(ref(database, 'Christian'), (snapshot) => {
             tableBody.innerHTML = ''; // Limpiar la tabla antes de actualizar
             snapshot.forEach((childSnapshot) => {
                 const data = childSnapshot.val();
@@ -144,7 +144,7 @@
                  console.log(nombre,correo,videojuego,plataforma,cantidad);
                 
                 push(
-                    ref(database, 'Aleex'),
+                    ref(database, 'Christian'),
                     {
                         name: nombre,
                         mail: correo,
