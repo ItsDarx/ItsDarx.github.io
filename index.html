@@ -147,9 +147,9 @@
                             <td>${data.platform}</td>
                             <td>${data.cant}</td>
                             <td>
-                                <button onclick="seleccionarRegistro('${childSnapshot.key}')">Seleccionar</button>
-                                <button onclick="editarRegistro('${childSnapshot.key}')">Editar</button>
-                                <button onclick="eliminarRegistro('${childSnapshot.key}')">Eliminar</button>
+                                <button style="background-color:black; color:white;" onclick="seleccionarRegistro('${childSnapshot.key}')">Seleccionar</button>
+                                <button style="background-color:green; color:white;" onclick="editarRegistro('${childSnapshot.key}')">Editar</button>
+                                <button style="background-color:red; color:white;" onclick="eliminarRegistro('${childSnapshot.key}')">Eliminar</button>
                             </td>
                         </tr>`;
                         tableBody.innerHTML += row;
