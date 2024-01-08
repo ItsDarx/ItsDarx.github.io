@@ -167,7 +167,7 @@
 }
 
     // Creando una funcion para eliminar al empleado mediante el ID
-    function eliminarUsuario(id) {
+     async function eliminarUsuario(id) {
     const confirmacion = confirm('¿Estás seguro de que quieres eliminar este usuario?');
 
     if (confirmacion) {
@@ -177,17 +177,25 @@
             method: 'DELETE',
         };
 
-        fetch(deleteUrl, deleteOptions)
-            .then(response => response.json())
-            .then(data => {
-                    console.log('Respuesta DELETE:', data);
-                    alert('Usuario eliminado exitosamente');
-                    location.reload();
-})
-
-            .catch(error => console.error('Error en la solicitud DELETE:', error));
+        try {
+            const response = await fetch(deleteUrl, deleteOptions);
+            
+            if (response.status === 204) {
+                // La solicitud DELETE fue exitosa (sin contenido)
+                console.log('Usuario eliminado exitosamente');
+                alert('Usuario eliminado exitosamente');
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Espera 1 segundo
+                location.reload();
+            } else {
+                // La respuesta no fue exitosa
+                console.error('Error en la solicitud DELETE. Estado:', response.status);
+            }
+        } catch (error) {
+            console.error('Error en la solicitud DELETE:', error);
+        }
     }
 }
+
 function openEditModal(id, nombre, salario) {
   // Poblar el modal con los datos actuales del usuario
   document.getElementById('newName').value = nombre;
