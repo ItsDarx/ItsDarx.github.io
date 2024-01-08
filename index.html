@@ -262,7 +262,7 @@ function editarUsuario() {
     .then(data => {
       console.log('Respuesta PUT:', data);
       alert('Usuario actualizado exitosamente');
-      location.reload(); // Recargar la página después de la operación exitosa
+      location.reload("index.html"); // Recargar la página después de la operación exitosa
     })
     .catch(error => console.error('Error en la solicitud PUT:', error));
 
