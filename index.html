@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD EMPLEADOS</title>
+     <!-- Bootstrap CSS -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <!-- Incluye jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">EMPLEADOS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="index.html">Inicio</a>
+              </li>
+       
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div id="editModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Usuario</h5>
+                    <button type="button" class="close" onclick="closeModal()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm">
+                        <div class="form-group">
+                            <label for="newName">Nuevo Nombre:</label>
+                            <input type="text" class="form-control" id="newName"  pattern="[A-Za-z]+" title="Solo se permiten letras" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newSalary">Nuevo Salario:</label>
+                            <input type="number" class="form-control" id="newSalary" class="form-control" step="0.01" min="0" inputmode="numeric" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="editarUsuario()">Guardar cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ">
+        <h1 class="text-center">EMPLEADOS</h1>
+        <div class="row">
+            <div class="col-md-4 col-sm-12 card shadow bg-info">
+                <h2 class="text-center">Ingresar Empleados</h2>
+                <form action="addUserForm">
+                    <label for="nombre"class="form-label">Nombres:</label>
+                    <input type="text"class="form-control" name="nombre" id="nombre" pattern="[a-zA-Z]+" title="Por favor, ingrese solo letras." required>
+                    <label for="" class="form-label">Salario:</label><br>
+                    <input type="number" name="salario" id="salario" class="form-control" step="0.01" min="0" required><br>
+                    
+                    <button type="button" class="btn btn-dark" onclick="agregarUsuario()">Agregar Usuario</button> <br> <br> 
+                </form>
+
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <div class="container mt-3 table-responsive">
+                    <table id="data" class="table table-bordered border-dark">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>NOMBRE</th>
+                                <th>SALARIO</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody class="align-middle"></tbody>
+                    </table>
+<script>
+    let url = 'https://cede.onrender.com/employess';
+        fetch(url)
+            .then(response => response.json())
+            .then(data => mostrarData(data))
+            .catch(error => console.log(error));
+
+            const mostrarData = (data) => {
+    console.log(data);
+    let body = "";
+    for (var i = 0; i < data.length; i++) {
+        body += `<tr>
+                    <td>${data[i].id}</td>
+                    <td>${data[i].nombre}</td>
+                    <td>${data[i].salario}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openEditModal(${data[i].id}, '${data[i].nombre}', '${data[i].salario}')">Editar</button>
+
+                        <button class="btn btn-danger" onclick="eliminarUsuario(${data[i].id})">Eliminar</button>
+                    </td>
+                 </tr>`;
+    }
+    document.getElementById('data').getElementsByTagName('tbody')[0].innerHTML = body;
+    }
+    function agregarUsuario() {
+    const newNombre = document.getElementById('nombre').value.trim();
+    const newSalario = document.getElementById('salario').value.trim();
+
+    // Validar que los campos no estén vacíos
+    if (newNombre === '' || newSalario === '') {
+        alert('Por favor, complete todos los campos.');
+        return;
+    }
+
+    // Validar que el nombre solo contenga letras y espacios
+    if (!/^[a-zA-Z\s]+$/.test(newNombre)) {
+        alert('Por favor, ingrese un nombre válido que solo contenga letras.');
+        return;
+    }
+
+    // Validar que el salario sea un número positivo
+    if (!/^\d*\.?\d+$/.test(newSalario) || parseFloat(newSalario) < 0) {
+        alert('Por favor, ingrese un salario válido como número positivo.');
+        return;
+    }
+
+    // Confirmar antes de realizar la acción
+    const confirmacion = window.confirm('¿Está seguro que desea guardar el usuario?');
+
+    if (!confirmacion) {
+        return;
+    }
+
+    const postUrl = 'https://cede.onrender.com/employess';
+
+    const newUserData = {
+        nombre: newNombre,
+        salario: newSalario,
+    };
+
+    const postOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newUserData),
+    };
+
+    fetch(postUrl, postOptions)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Respuesta POST:', data);
+            alert('Usuario agregado exitosamente');
+            location.reload();
+        })
+        .catch(error => console.error('Error en la solicitud POST:', error));
+}
+
+    // Creando una funcion para eliminar al empleado mediante el ID
+    function eliminarUsuario(id) {
+    const confirmacion = confirm('¿Estás seguro de que quieres eliminar este usuario?');
+
+    if (confirmacion) {
+        const deleteUrl = `https://cede.onrender.com/employess/${id}`;
+
+        const deleteOptions = {
+            method: 'DELETE',
+        };
+
+        fetch(deleteUrl, deleteOptions)
+            .then(response => response.json())
+            .then(data => {
+                    console.log('Respuesta DELETE:', data);
+                    alert('Usuario eliminado exitosamente');
+                    location.reload();
+})
+
+            .catch(error => console.error('Error en la solicitud DELETE:', error));
+    }
+}
+function openEditModal(id, nombre, salario) {
+  // Poblar el modal con los datos actuales del usuario
+  document.getElementById('newName').value = nombre;
+  document.getElementById('newSalary').value = salario;
+
+  // Mostrar el modal
+  document.getElementById('editModal').style.display = 'block';
+
+  // Guardar los datos actuales en variables globales para su uso en la función editarUsuario
+  window.currentUserId = id;
+  window.currentUserName = nombre;
+  window.currentUserSalary = salario;
+}
+
+function closeModal() {
+  document.getElementById('editModal').style.display = 'none';
+}
+
+function editarUsuario() {
+  const nuevoNombre = document.getElementById('newName').value;
+  const nuevoSalario = document.getElementById('newSalary').value;
+  // Validar que los campos no estén vacíos
+  if (nuevoNombre === '' || nuevoSalario === '') {
+        alert('Por favor, complete todos los campos.');
+        return;
+    }
+
+    // Validar que el nombre solo contenga letras y espacios
+    if (!/^[a-zA-Z\s]+$/.test(nuevoNombre)) {
+        alert('Por favor, ingrese un nombre válido que solo contenga letras.');
+        return;
+    }
+
+    // Validar que el salario sea un número positivo
+    if (!/^\d*\.?\d+$/.test(nuevoSalario) || parseFloat(nuevoSalario) < 0) {
+        alert('Por favor, ingrese un salario válido como número positivo.');
+        return;
+    }
+
+    // Confirmar antes de realizar la acción
+    const confirmacion = window.confirm('¿Está seguro que desea actualizar el usuario?');
+
+    if (!confirmacion) {
+        return;
+    }
+
+  const putUrl = `https://cede.onrender.com/employess/${window.currentUserId}`;
+
+  const userData = {
+    nombre: nuevoNombre,
+    salario: nuevoSalario,
+  };
+
+  const putOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  };
+
+  fetch(putUrl, putOptions)
+    .then(response => response.json())
+    .then(data => {
+      console.log('Respuesta PUT:', data);
+      alert('Usuario actualizado exitosamente');
+      location.reload(); // Recargar la página después de la operación exitosa
+    })
+    .catch(error => console.error('Error en la solicitud PUT:', error));
+
+  closeModal(); // Cierra el modal después de editar el usuario
+}
+
+
+                        
+</script>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
