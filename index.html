@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+.<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
       <!-- Incluye jQuery UI -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ba se/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -89,7 +89,7 @@
                         <tbody class="align-middle"></tbody>
                     </table>
 <script>
-    let url = 'https://cede.onrender.com/employess';
+    let url = 'http://54.80.72.235:3000/employess';
         fetch(url)
             .then(response => response.json())
             .then(data => mostrarData(data))
@@ -141,7 +141,7 @@
         return;
     }
 
-    const postUrl = 'https://cede.onrender.com/employess';
+    const postUrl = 'http://54.80.72.235:3000/employess';
 
     const newUserData = {
         nombre: newNombre,
@@ -171,7 +171,7 @@
     const confirmacion = confirm('¿Estás seguro de que quieres eliminar este usuario?');
 
     if (confirmacion) {
-        const deleteUrl = `https://cede.onrender.com/employess/${id}`;
+        const deleteUrl = `http://54.80.72.235:3000/employess/${id}`;
 
         const deleteOptions = {
             method: 'DELETE',
@@ -242,7 +242,7 @@ function editarUsuario() {
         return;
     }
 
-  const putUrl = `https://cede.onrender.com/employess/${window.currentUserId}`;
+  const putUrl = `http://54.80.72.235:3000/employess/${window.currentUserId}`;
 
   const userData = {
     nombre: nuevoNombre,
